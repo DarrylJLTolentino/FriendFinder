@@ -135,13 +135,23 @@
                 <option value="5">Five</option>
             </select>
             <br><br>
-            <button class="btn btn-lg btn-primary" type="Submit">Submit</button>
+            <button class="btn btn-lg btn-primary" id = "submit" type="Submit">Submit</button>
         </div>
 
     </div>
 
     <script>
+        var answerArr = [];
+        $("#submit").on("click", function() {
+            for (var i = 1; i < 11; i++) {
+                answerArr.push($("#choice" + i).val());
+            }
+            console.log(answerArr);
 
+            $.post("api/friends", function(req, res) {
+                console.log("Answers submitted.")
+            });
+        });
     </script>
 
 </body>
