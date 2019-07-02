@@ -12,6 +12,6 @@ app.use(express.json());
 require("./app/routing/apiRoutes")(app);
 require("./app/routing/htmlRoutes")(app, path);
 
-app.listen(Port, function() {
+app.listen(PORT, function() {
     console.log("App is listening on PORT: " + PORT);
 });
