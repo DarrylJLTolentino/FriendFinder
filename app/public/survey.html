@@ -141,14 +141,23 @@
     </div>
 
     <script>
-        var answerArr = [];
+        var newFriendo = {};
         $("#submit").on("click", function() {
+            newFriendo = {
+                name: $("#name").val(),
+                photo: $("#photoLink").val()
+            }
+            var answerArr = [];
             for (var i = 1; i < 11; i++) {
                 answerArr.push($("#choice" + i).val());
             }
             console.log(answerArr);
 
-            $.post("api/friends", function(req, res) {
+            newFriendo = {
+                choice: answerArr
+            }
+
+            $.post("/api/friends", function(req, res) {
                 console.log("Answers submitted.")
             });
         });
