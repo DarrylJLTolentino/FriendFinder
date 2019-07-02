@@ -5,6 +5,10 @@ module.exports = function(app, path) {
         res.sendFile(path.join(__dirname, "../public/survey.html"));
     });
 
+    app.get("/", function(req, res) {
+        res.sendFile(path.join(__dirname, "../public/home.html"));
+    });
+
     //path defaults to home.html if there are no matching routes above
     app.get("*", function(req, res) {
         res.sendFile(path.join(__dirname, "../public/home.html"));
