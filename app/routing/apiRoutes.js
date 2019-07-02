@@ -7,4 +7,7 @@ module.exports = function(app) {
     });
 
     //need to do app.post
+    app.post("/api/friends", function(req, res) {
+        friendData.push(res);
+    });
 }
