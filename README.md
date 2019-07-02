@@ -12,3 +12,29 @@ This is a website that features a rudimentary friend finder that allows the user
 
 This webpage was supposed to be Fire Emblem themed, but the styling did not work out within the server and in the heroku app. It's something that I hope to fix at a later date.
 
+######
+
+| Technology Used | Reference |
+| --------------- | --------- |
+| HTML | https://developer.mozilla.org/en-US/docs/Learn/HTML |
+| CSS | https://developer.mozilla.org/en-US/docs/Learn/CSS/Introduction_to_CSS |
+| Bootstrap | https://getbootstrap.com/ |
+| JavaScript | https://www.javascript.com/ |
+| jQuery | https://jquery.com/ |
+| NodeJs | https://nodejs.org/en/ |
+| npm | https://www.npmjs.com/ |
+| express | http://expressjs.com/ |
+
+######
+
+| Versioning | Reference |
+| --------------- | --------- |
+| Github | https://github.com/ |
+
+######
+
+## Author
+- Darryl Tolentino
+
+## Acknowledgements
+Jake Dudum - For helping me fix syntax
