@@ -135,14 +135,48 @@
                 <option value="5">5</option>
             </select>
             <br><br>
-            <button class="btn btn-lg btn-primary" id="submit" type="Submit">Submit</button>
+            <button class="btn btn-lg btn-primary" id="submit" data-toggle="modal" data-target="#myModal"
+                type="Submit">Submit</button>
+        </div>
+
+        <div class="modal" id="myModal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Congratulations! This is the person you are most compatible with!</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <h1 id="bestFriendName"></h1>
+                        <img src="#" id="bestFriendPhoto">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
         </div>
 
     </div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
     <script>
         var newFriendo = {};
+
+        $('#myModal').on('shown.bs.modal', function () {
+            $('#submit').trigger('focus')
+        })
+
         $("#submit").on("click", function () {
+            event.preventDefault();
             var answerArr = [];
             for (var i = 1; i < 11; i++) {
                 var val = $("#choice" + i).val()
@@ -160,7 +194,45 @@
                 console.log("Answers submitted.")
             });
 
+            $.get("/api/friends", function (data) {
+                var compareFriend;
+                var currentUser = data[data.length - 1];
+                var diffArr = [];
+                var bestDiff = 20;
+                var bestFriend = {};
+                for (var i = 0; i < data.length - 1; i++) {
+                    compareFriend = data[i];
+                    var name = compareFriend.name;
+                    var photo = compareFriend.photo;
+                    // console.log(compareFriend);
+                    for (var j = 0; j < compareFriend.choice.length; j++) {
+                        // console.log(compareFriend.choice[j]);
+                        var diff = Math.abs(currentUser.choice[j] - compareFriend.choice[j]);
+                        diffArr.push(diff);
+                    }
+
+                    var sum = 0;
+
+                    for (var k = 0; k < diffArr.length; k++) {
+                        sum += diffArr[k];
+                    }
+
+                    if (sum < bestDiff) {
+                        bestDiff = sum;
+                        bestFriend = {
+                            name: name,
+                            photo: photo
+                        }
+                    }
+                    diffArr = [];
+                }
+                $("#bestFriendName").text(bestFriend.name);
+                $("#bestFriendPhoto").attr("src", bestFriend.photo);
+                // console.log(diffArr);
+                $('#myModal').modal('show');
+            });
         });
+
     </script>
 
 </body>
