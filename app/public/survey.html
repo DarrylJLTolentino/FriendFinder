@@ -136,8 +136,7 @@
                 <option value="5">5</option>
             </select>
             <br><br>
-            <button class="btn btn-lg btn-primary" id="submit" data-toggle="modal" data-target="#myModal"
-                type="Submit">Submit</button>
+            <button class="btn btn-lg btn-primary" id="submit" type="Submit">Submit</button>
         </div>
 
         <div class="modal" id="myModal" tabindex="-1" role="dialog">
@@ -154,7 +153,7 @@
                         <img src="#" id="bestFriendPhoto">
                     </div>
                     <div class="modal-footer">
-                        <a href = "/" type="button" class="btn btn-secondary" id = "redirect" data-dismiss="modal">Close</a>
+                        <a href="/" type="button" class="btn btn-secondary" id="redirect" data-dismiss="modal">Close</a>
                     </div>
                 </div>
             </div>
@@ -175,7 +174,19 @@
         crossorigin="anonymous"></script>
 
     <script>
+        $("#myModal").modal("hide");
         var newFriendo = {};
+
+        function formVal() {
+            var isValid = true;
+            $(".form-control").each(function () {
+                if ($(this).val() === "") {
+                    isValid = false;
+                }
+            })
+
+            return isValid;
+        }
 
         $('#myModal').on('shown.bs.modal', function () {
             $('#submit').trigger('focus')
@@ -183,65 +194,75 @@
 
         $("#submit").on("click", function () {
             event.preventDefault();
-            var answerArr = [];
-            for (var i = 1; i < 11; i++) {
-                var val = $("#choice" + i).val()
-                answerArr.push(val);
-            }
-            // console.log(answerArr);
 
-            newFriendo = {
-                name: $("#name").val(),
-                photo: $("#photoLink").val(),
-                choice: answerArr
-            }
+            if (formVal() === true) {
 
-            $.post("/api/friends", newFriendo, function (data) {
-                console.log("Answers submitted.")
-            });
-
-            $.get("/api/friends", function (data) {
-                var compareFriend;
-                var currentUser = data[data.length - 1];
-                var diffArr = [];
-                var bestDiff = 20;
-                var bestFriend = {};
-                for (var i = 0; i < data.length - 1; i++) {
-                    compareFriend = data[i];
-                    var name = compareFriend.name;
-                    var photo = compareFriend.photo;
-                    // console.log(compareFriend);
-                    for (var j = 0; j < compareFriend.choice.length; j++) {
-                        // console.log(compareFriend.choice[j]);
-                        var diff = Math.abs(currentUser.choice[j] - compareFriend.choice[j]);
-                        diffArr.push(diff);
-                    }
-
-                    var sum = 0;
-
-                    for (var k = 0; k < diffArr.length; k++) {
-                        sum += diffArr[k];
-                    }
-
-                    if (sum < bestDiff) {
-                        bestDiff = sum;
-                        bestFriend = {
-                            name: name,
-                            photo: photo
-                        }
-                    }
-                    diffArr = [];
+                var answerArr = [];
+                for (var i = 1; i < 11; i++) {
+                    var val = $("#choice" + i).val()
+                    answerArr.push(val);
                 }
-                $("#bestFriendName").text(bestFriend.name);
-                $("#bestFriendPhoto").attr("src", bestFriend.photo);
-                $("#bestFriendPhoto").css("height", "400px");
-                $("#bestFriendPhoto").css("width", "400px");
-                // console.log(diffArr);
-                $('#myModal').modal('show');
-            });
+                // console.log(answerArr);
+
+                newFriendo = {
+                    name: $("#name").val(),
+                    photo: $("#photoLink").val(),
+                    choice: answerArr
+                }
+
+                $.post("/api/friends", newFriendo, function (data) {
+                    console.log("Answers submitted.")
+                });
+
+                $.get("/api/friends", function (data) {
+                    var compareFriend;
+                    var currentUser = data[data.length - 1];
+                    var diffArr = [];
+                    var bestDiff = 20;
+                    var bestFriend = {};
+                    for (var i = 0; i < data.length - 1; i++) {
+                        compareFriend = data[i];
+                        var name = compareFriend.name;
+                        var photo = compareFriend.photo;
+                        // console.log(compareFriend);
+                        for (var j = 0; j < compareFriend.choice.length; j++) {
+                            // console.log(compareFriend.choice[j]);
+                            var diff = Math.abs(currentUser.choice[j] - compareFriend.choice[j]);
+                            diffArr.push(diff);
+                        }
+
+                        var sum = 0;
+
+                        for (var k = 0; k < diffArr.length; k++) {
+                            sum += diffArr[k];
+                        }
+
+                        if (sum < bestDiff) {
+                            bestDiff = sum;
+                            bestFriend = {
+                                name: name,
+                                photo: photo
+                            }
+                        }
+                        diffArr = [];
+                    }
+                    $("#bestFriendName").text(bestFriend.name);
+                    $("#bestFriendPhoto").attr("src", bestFriend.photo);
+                    $("#bestFriendPhoto").css("height", "400px");
+                    $("#bestFriendPhoto").css("width", "400px");
+                    // console.log(diffArr);
+                    $('#myModal').modal('show');
+                });
+            }
+            else if (formVal() === false) {
+                alert("Please fill out the name and photo fields before submitting.");
+            }
+            else {
+                alert("Something went wrong. Try again.");
+            }
         });
 
-        $("#redirect").on("click", function() {
+        $("#redirect").on("click", function () {
             location.href = "/";
         });
 
