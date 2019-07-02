@@ -38,128 +38,128 @@
             <h3>Question 1</h3>
             <p>In the face of danger, you choose fight over flight</p>
             <select class="custom-select" id="choice1">
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option selected value="3">Three</option>
-                <option value="4">Four</option>
-                <option value="5">Five</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option selected value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
             </select>
 
             <h3>Question 2</h3>
             <p>If you are passing an injured person on the road, you find yourself obliged to help that person</p>
             <select class="custom-select" id="choice2">
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option selected value="3">Three</option>
-                <option value="4">Four</option>
-                <option value="5">Five</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option selected value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
             </select>
 
             <h3>Question 3</h3>
             <p>As a member of a party, you wouldn't mind betraying them if you gained something.</p>
             <select class="custom-select" id="choice3">
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option selected value="3">Three</option>
-                <option value="4">Four</option>
-                <option value="5">Five</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option selected value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
             </select>
 
             <h3>Question 4</h3>
             <p>You prefer raw magical power over physical abilities.</p>
             <select class="custom-select" id="choice4">
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option selected value="3">Three</option>
-                <option value="4">Four</option>
-                <option value="5">Five</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option selected value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
             </select>
 
             <h3>Question 5</h3>
             <p>You feel more comfortable up close than at range during combat</p>
             <select class="custom-select" id="choice5">
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option selected value="3">Three</option>
-                <option value="4">Four</option>
-                <option value="5">Five</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option selected value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
             </select>
 
             <h3>Question 6</h3>
             <p>You try hard to avoid conflict, but will confront it if needed</p>
             <select class="custom-select" id="choice6">
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option selected value="3">Three</option>
-                <option value="4">Four</option>
-                <option value="5">Five</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option selected value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
             </select>
 
             <h3>Question 7</h3>
             <p>You are constantly haunted by your past</p>
             <select class="custom-select" id="choice7">
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option selected value="3">Three</option>
-                <option value="4">Four</option>
-                <option value="5">Five</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option selected value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
             </select>
 
             <h3>Question 8</h3>
             <p>You would try to always challenge fate</p>
             <select class="custom-select" id="choice8">
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option selected value="3">Three</option>
-                <option value="4">Four</option>
-                <option value="5">Five</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option selected value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
             </select>
 
             <h3>Question 9</h3>
             <p>You are really easy to talk to</p>
             <select class="custom-select" id="choice9">
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option selected value="3">Three</option>
-                <option value="4">Four</option>
-                <option value="5">Five</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option selected value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
             </select>
 
             <h3>Question 10</h3>
             <p>You would risk your own life to save a loved one</p>
             <select class="custom-select" id="choice10">
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option selected value="3">Three</option>
-                <option value="4">Four</option>
-                <option value="5">Five</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option selected value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
             </select>
             <br><br>
-            <button class="btn btn-lg btn-primary" id = "submit" type="Submit">Submit</button>
+            <button class="btn btn-lg btn-primary" id="submit" type="Submit">Submit</button>
         </div>
 
     </div>
 
     <script>
         var newFriendo = {};
-        $("#submit").on("click", function() {
-            newFriendo = {
-                name: $("#name").val(),
-                photo: $("#photoLink").val()
-            }
+        $("#submit").on("click", function () {
             var answerArr = [];
             for (var i = 1; i < 11; i++) {
-                answerArr.push($("#choice" + i).val());
+                var val = $("#choice" + i).val()
+                answerArr.push(val);
             }
-            console.log(answerArr);
+            // console.log(answerArr);
 
             newFriendo = {
+                name: $("#name").val(),
+                photo: $("#photoLink").val(),
                 choice: answerArr
             }
 
-            $.post("/api/friends", function(req, res) {
+            $.post("/api/friends", newFriendo, function (data) {
                 console.log("Answers submitted.")
             });
+
         });
     </script>
 
