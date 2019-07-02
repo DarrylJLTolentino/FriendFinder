@@ -8,6 +8,16 @@ module.exports = function(app) {
 
     //need to do app.post
     app.post("/api/friends", function(req, res) {
-        friendData.push(res);
+        var choiceArr = [];
+        for (var i = 0; i < req.body.choice.length; i++) {
+            choiceArr.push(parseInt(req.body.choice[i]));
+        }
+        var newFriendo = {
+            name: req.body.name,
+            photo: req.body.photo,
+            choice: choiceArr
+        }
+
+        friendData.push(newFriendo);
     });
 }
